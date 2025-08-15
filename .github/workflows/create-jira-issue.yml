@@ -1,1 +1,27 @@
-dd
+name: Create Jira Issue on GitHub Issue Creation
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  create_jira_issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Create Jira Issue
+        uses: tomhjp/gh-action-jira-create@v1 # 또는 다른 Jira 액션 사용
+        with:
+          jira_host: ${{ secrets.JIRA_HOST }}
+          jira_user: ${{ secrets.JIRA_USER }}
+          jira_token: ${{ secrets.JIRA_TOKEN }}
+          project_key: ${{ secrets.JIRA_PROJECT_KEY }}
+          issue_summary: "GitHub Issue: ${{ github.event.issue.title }}"
+          issue_description: "GitHub Issue: ${{ github.event.issue.html_url }}"
+          issue_type: "Task" # 또는 다른 이슈 타입
+          # 추가적인 필드 설정 (필요에 따라)
+          # ...
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
