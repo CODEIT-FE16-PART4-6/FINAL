@@ -1,27 +1,28 @@
-name: Create Jira Issue on GitHub Issue Creation
+name: Create Jira issue
 
 on:
   issues:
     types: [opened]
 
 jobs:
-  create_jira_issue:
+  create-issue:
+    name: Create Jira issue
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Create Jira Issue
-        uses: tomhjp/gh-action-jira-create@v1 # 또는 다른 Jira 액션 사용
-        with:
-          jira_host: ${{ secrets.JIRA_HOST }}
-          jira_user: ${{ secrets.JIRA_USER }}
-          jira_token: ${{ secrets.JIRA_TOKEN }}
-          project_key: ${{ secrets.JIRA_PROJECT_KEY }}
-          issue_summary: "GitHub Issue: ${{ github.event.issue.title }}"
-          issue_description: "GitHub Issue: ${{ github.event.issue.html_url }}"
-          issue_type: "Task" # 또는 다른 이슈 타입
-          # 추가적인 필드 설정 (필요에 따라)
-          # ...
+      - name: Login to Jira
+        uses: atlassian/gajira-login@v3
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+          JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+
+      - name: Create Jira issue
+        uses: atlassian/gajira-create@v3
+        with:
+          project: "P6"           # 수정 필요
+          issuetype: Task                       # 또는 Bug, Story 등
+          summary: "${{ github.event.issue.title }}"
+          description: "${{ github.event.issue.html_url }}"
