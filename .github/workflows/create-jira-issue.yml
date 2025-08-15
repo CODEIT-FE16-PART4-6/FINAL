@@ -22,7 +22,7 @@ jobs:
       - name: Create Jira issue
         uses: atlassian/gajira-create@v3
         with:
-          project: "P6"           # 수정 필요
-          issuetype: Task                       # 또는 Bug, Story 등
+          project: P6           
+          issuetype: Task                      
           summary: "${{ github.event.issue.title }}"
           description: "${{ github.event.issue.html_url }}"
