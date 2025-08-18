@@ -1,4 +1,4 @@
-const page = () => {
-  return <div>예약내역</div>;
+const MyReservations = () => {
+  return <div>내 예약 내역 + 예약 현황</div>;
 };
-export default page;
+export default MyReservations;
