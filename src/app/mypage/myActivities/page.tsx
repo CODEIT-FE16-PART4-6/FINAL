@@ -1,4 +1,4 @@
-const page = () => {
-  return <div>체험관리</div>;
+const MyActivities = () => {
+  return <div>내 체험 관리</div>;
 };
-export default page;
+export default MyActivities;
