@@ -2,25 +2,24 @@
 
 @theme {
   /* breakpoints */
-  --breakpoint-sm: 640px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 1280px;
+  --breakpoint-sm: 520px; /* mobile ~ mini tablet */
+  --breakpoint-md: 640px; /* tablet */
+  --breakpoint-lg: 1280px; /* desktop */
 
   /* colors */
   --color-black: #1b1b1b;
   --color-white: #fff;
 
   --color-gray-100: #fafafa;
-  --color-gray-200: #eee;
-  --color-gray-300: #ddd;
+  --color-gray-200: #eeeeee;
+  --color-gray-300: #dddddd;
   --color-gray-400: #cbc9cf;
   --color-gray-500: #adae88;
   --color-gray-600: #a4a1aa;
   --color-gray-700: #79747e;
   --color-gray-800: #4b4b4b;
 
-  --color-primary: #0b3bed;
-  --color-primary-light: #ced8d5;
+  --color-primary: #0b3b2d;
   --color-primary-dark: #112211; /* nomad black */
 
   --color-red-primary: #ff472e;
