@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Providers } from '@/app/Providers';
+import { Providers } from '@/components/provider/Providers';
 import { pretendard } from '@/utils/fonts';
 import './globals.css';
 
