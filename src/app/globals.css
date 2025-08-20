@@ -8,19 +8,21 @@
 
   /* colors */
   --color-black: #1b1b1b;
+  --color-nomad-black: #112211; /* nomad black */
   --color-white: #fff;
 
   --color-gray-100: #fafafa;
   --color-gray-200: #eee;
   --color-gray-300: #ddd;
   --color-gray-400: #cbc9cf;
-  --color-gray-500: #adae88;
+  --color-gray-500: #adaeb8;
   --color-gray-600: #a4a1aa;
-  --color-gray-700: #79747e;
-  --color-gray-800: #4b4b4b;
+  --color-gray-700: #a1a1a1;
+  --color-gray-800: #79747e;
+  --color-gray-900: #4b4b4b;
 
   --color-primary: #0b3b2d;
-  --color-primary-dark: #112211; /* nomad black */
+  --color-primary-dark: var(--color-nomad-black);
 
   --color-red-primary: #ff472e;
   --color-red-secondary: #ffc2ba;
@@ -61,7 +63,7 @@
 /* reset */
 @layer base {
   body {
-    @apply text-gray-800;
+    @apply text-black;
   }
 
   button {
