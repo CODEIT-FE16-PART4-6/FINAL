@@ -17,7 +17,7 @@ const Header = () => {
   return (
     <header
       className={clsx(
-        'sticky top-0 left-0 z-10 flex h-[70px] w-full items-center bg-white transition-shadow',
+        'sticky top-0 left-0 z-10 flex h-[70px] w-full items-center bg-white transition-shadow border border-gray-300',
         {
           shadow: isScrolled,
         },
