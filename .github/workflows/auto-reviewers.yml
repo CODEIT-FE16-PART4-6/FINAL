@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Assign reviewers
+        working-directory: ./
         run: |
           gh pr edit ${{ github.event.pull_request.number }} \
             --add-reviewer "Jaeho Choi" \
