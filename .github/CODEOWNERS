@@ -1,3 +1,9 @@
+name: Assign Reviewers via CLI
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
 jobs:
   assign-reviewers:
     runs-on: ubuntu-latest
