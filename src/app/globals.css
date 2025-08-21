@@ -58,6 +58,9 @@
   --text-xs--line-height: 18px;
   --text-xs-tight: 12px;
   --text-xs-tight--line-height: 18px;
+
+  /* shadow */
+  --shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.05);
 }
 
 /* reset */
