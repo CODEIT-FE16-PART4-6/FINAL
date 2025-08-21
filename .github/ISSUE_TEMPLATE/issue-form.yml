@@ -1,25 +1,17 @@
 name: '이슈 생성'
 description: 'Repo에 이슈를 생성하며, 생성된 이슈는 Jira와 연동됩니다.'
 labels: [feat]
-title: '이슈 이름을 작성해주세요'
+title: '이슈 이름'
 body:
   - type: input
     id: parentKey
     attributes:
       label: '🎟️ 상위 작업 (Ticket Number)'
       description: '상위 작업의 Ticket Number를 기입해주세요'
-      placeholder: 'PRJ-00'
+      placeholder: 'P6-'
     validations:
       required: true
 
-  - type: input
-    id: branch
-    attributes:
-      label: '🌳 브랜치명 (Branch)'
-      description: '영어로 브랜치명을 작성해주세요'
-    validations:
-      required: true
-      
   - type: input
     id: description
     attributes:
