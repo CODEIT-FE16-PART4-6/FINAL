@@ -1,6 +1,6 @@
 <div align="center">
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Montserrat&weight=800&size=22&duration=3000&pause=1000&color=9376F7&center=true&vCenter=true&random=true&width=445&lines=CODEIT+FE16+PART4+TEAM6+PROJECT;%22GLOBAL+NOMAD%22)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Permanent+Marker&size=40&duration=1500&pause=1000&color=105541&center=true&multiline=true&width=466&height=101&lines=%22Experia%22;Explorer+the+area)](https://git.io/typing-svg)
 <br>
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Gothic+A1&weight=600&duration=4000&pause=3000&color=614CF7&center=true&vCenter=true&width=435&lines=%EA%B9%80%EC%9D%B4%EC%84%9C+%EC%9D%B4%EC%83%81%EB%8B%AC+%EC%9D%B4%ED%98%95%ED%83%81+%EC%B5%9C%EB%AF%BC%EC%A4%80+%EC%B5%9C%EC%9E%AC%ED%98%B8)](https://git.io/typing-svg)
 
@@ -8,5 +8,4 @@
 
 ![Footer](https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=footer)
 
-<p>test</p>
 </div>
