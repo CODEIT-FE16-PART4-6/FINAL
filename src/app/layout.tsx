@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Providers } from '@/components/provider/Providers';
 import { pretendard } from '@/utils/fonts';
 import './globals.css';
+import Header from '@/components/layout/Header';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +17,10 @@ export default function RootLayout({
   return (
     <html lang='ko'>
       <body className={pretendard.className}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Header />
+          {children}
+        </Providers>
       </body>
     </html>
   );

@@ -12,6 +12,7 @@
     "@headlessui/react": "^2.2.7",
     "@tanstack/react-query": "^5.85.5",
     "@tanstack/react-query-devtools": "^5.85.5",
+    "clsx": "^2.1.1",
     "husky": "^9.1.7",
     "next": "15.4.6",
     "prettier": "^3.6.2",
@@ -23,14 +24,17 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@svgr/webpack": "^8.1.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/webpack": "^5.28.5",
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "webpack": "^5.101.3"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
