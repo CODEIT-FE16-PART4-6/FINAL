@@ -3,7 +3,7 @@
 @theme {
   /* breakpoints */
   --breakpoint-sm: 520px; /* mobile ~ mini tablet */
-  --breakpoint-md: 640px; /* tablet */
+  --breakpoint-md: 720px; /* tablet */
   --breakpoint-lg: 1280px; /* desktop */
 
   /* colors */
