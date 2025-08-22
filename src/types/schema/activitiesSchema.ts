@@ -5,7 +5,7 @@ export const Activities = z.object({
   totalCount: z.number(),
   activities: z.array(z.object({
     id: z.number(),
-    userId: z.string(),
+    userId: z.number(),
     title: z.string(),
     description: z.string(),
     category: z.string(),

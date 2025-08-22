@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const ReservationReqShema = z.object({
+export const ReservationRequestShema = z.object({
   scheduleId: z.number(),
   headCount: z.number(),
 });
@@ -13,7 +13,7 @@ export const ReservationResponseShema = z.object({
   userId: z.number(),
   totalPrice: z.number(),
   activitiyId: z.number(),
-  status: z.string(),
+  status: z.enum(["pending", "confirmed", "declined", "canceled", "completed"]),
   date: z.string(),
   startTime: z.string(),
   endTime: z.string(),
@@ -22,5 +22,5 @@ export const ReservationResponseShema = z.object({
   updatedAt: z.string(),
 });
 
-export type ReservationReq = z.infer<typeof ReservationReqShema>;
+export type ReservationReq = z.infer<typeof ReservationRequestShema>;
 export type ReservationResponse = z.infer<typeof ReservationResponseShema>;

@@ -1,3 +1,12 @@
+import { DropdownSelect, DataType } from '@/components/DropdownSelect';
+//셀렉트 드롭다운 예시 목데이터
+const dataList:DataType[] = [
+  {label: '함께 배우면 즐거운 스트릿 댄스',
+  value: '함께 배우면 즐거운 스트릿 댄스',},
+  {label: '러시아로 떠나는 국립 발레 배우기',
+  value: '러시아로 떠나는 국립 발레 배우기',}
+]
+
 export default function Home() {
   return (
     <main>
@@ -9,6 +18,8 @@ export default function Home() {
       <h5 className='text-xl font-medium text-orange'>폰트 테스트</h5>
       <h6 className='text-lg text-green'>폰트 테스트</h6>
       <p className='text-base text-black'>폰트 테스트</p>
+    {/* 드롭다운 테스트 */}
+      <DropdownSelect datas={dataList}/>
     </main>
   );
 }
