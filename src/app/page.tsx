@@ -1,6 +1,11 @@
+import { StarRating } from '@/components/StarRating';
+
 export default function Home() {
   return (
     <main>
+      <div>
+        <StarRating />
+      </div>
       반응형, 컬러 시스템 테스트
       <div className='bg-primary md:bg-green lg:bg-yellow h-6 w-full md:mx-5 md:w-[400px] lg:w-[1200px]'></div>
       <h2 className='text-4xl font-bold text-black'>폰트 테스트</h2>
