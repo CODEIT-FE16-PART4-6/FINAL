@@ -19,19 +19,17 @@ interface StarRatingProps {
  * @param size - (반영 x 필요하면 사용)
  */
 export const StarRating = ({ value = 0, onChange }: StarRatingProps) => {
-  const [currentRating, setCurrentRating] = useState(value); // 현재 선택된 값.
+  //const [currentRating, setCurrentRating] = useState(value); // 현재 선택된 값. <= 중복값
   const [hoverRating, setHoverRating] = useState(0); //마우스 를 올렸을 때의 임시값
-  //[confirm, setConfirm] =useState(); //점수 확정 상태
 
   const STARS = [1, 2, 3, 4, 5];
 
   const handleClick = (star: number) => {
-    setCurrentRating(star);
     onChange?.(star);
   };
 
   return (
-    <div>
+    <>
       <div className='flex'>
         {STARS.map(star => (
           <button
@@ -42,18 +40,12 @@ export const StarRating = ({ value = 0, onChange }: StarRatingProps) => {
             onMouseLeave={() => setHoverRating(0)}
             className='px-1'
           >
-            {(hoverRating || currentRating) >= star ? (
-              <div className='h-14 w-14'>
-                <StarFilled />
-              </div>
-            ) : (
-              <div className='h-14 w-14'>
-                <StarEmpty />
-              </div>
-            )}
+            <div className='h-14 w-14'>
+              {(hoverRating || value) >= star ? <StarFilled /> : <StarEmpty />}
+            </div>
           </button>
         ))}
       </div>
-    </div>
+    </>
   );
 };
