@@ -34,21 +34,21 @@ const Header = () => {
         </Link>
         <nav className='flex gap-3 font-medium text-black'>
           {/* 로그인 전 */}
-          {/* <Link href='/signin' className='nav-list'>
+          <Link href='/signin' className='nav-list'>
             로그인
           </Link>
           <Link href='/signup' className='nav-list'>
             회원가입
-          </Link> */}
+          </Link>
 
           {/* 로그인 후 */}
-          <ul className='flex items-center divide-x divide-gray-300'>
-            <li className='pr-5'>
+          {/* <ul className='flex items-center divide-x divide-gray-300'>
+            <li className='flex pr-3 md:pr-5'>
               <button>
                 <AlarmIcon className='hover:text-primary text-gray-700 transition-colors' />
               </button>
             </li>
-            <li className='flex pl-5'>
+            <li className='pl-3 md:pl-5'>
               <button
                 type='button'
                 className='hover:text-primary flex items-center gap-2.5 transition-colors'
@@ -64,7 +64,7 @@ const Header = () => {
                 정만철
               </button>
             </li>
-          </ul>
+          </ul> */}
         </nav>
       </div>
     </header>
