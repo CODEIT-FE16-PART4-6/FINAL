@@ -9,38 +9,39 @@ interface DropdownWrapperProps {
 }
 
 interface DropdownTriggerProps {
-  onClick?: ()=>void;
+  onClick?: () => void;
   isOpen: boolean;
 }
 
 interface DropdownMenuProps {
   isOpen: boolean;
   datas: DataType[];
-  onChange: (data: DataType)=>void;
-  selectedData?: DataType|null;
+  onChange: (data: DataType) => void;
+  selectedData?: DataType | null;
 }
 
-const DropdownWrapper=() => {
-  return (
-  <div>
-  </div>);
+const DropdownWrapper = () => {
+  return <div></div>;
 };
 
-const DropdownTrigger=({onClick, isOpen}:DropdownTriggerProps) => {
+const DropdownTrigger = ({ onClick, isOpen }: DropdownTriggerProps) => {
   return (
     <div>
-      <button
-        type="button" onClick={onClick}>드롭다운버튼
+      <button type='button' onClick={onClick}>
+        드롭다운버튼
       </button>
     </div>
-  )
-}
+  );
+};
 
-const DropdownMenu=({datas, isOpen, onChange, selectedData }:DropdownMenuProps) => {
-  
-  return(
+const DropdownMenu = ({ datas, isOpen, onChange, selectedData }: DropdownMenuProps) => {
+  return (
     <div>
-      {datas.map(data)=>(<li key={data.value} onClick={()=>onChange(data)}>{data.label}</li>)}
+      {datas.map(data => (
+        <li key={data.value} onClick={() => onChange(data)}>
+          {data.label}
+        </li>
+      ))}
     </div>
-  )
-}
+  );
+};
