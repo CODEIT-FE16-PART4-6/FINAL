@@ -70,3 +70,10 @@
     @apply cursor-pointer disabled:cursor-not-allowed;
   }
 }
+
+/* Input 공통 컴포넌트 */
+input {
+  border: 1px solid var(--color-gray-600);
+  font-size: var(--text-base);
+  border-radius: 6px;
+}
