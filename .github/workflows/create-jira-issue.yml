@@ -15,15 +15,15 @@ jobs:
       - name: Check labels for p6
         id: check_label
         run: |
-           labels=$(echo '${{ toJson(github.event.issue.labels) }}')
-            is_p6=false
-            echo "$labels" | jq -r '.[] | .name' | while read -r name; do
-            if echo "$name" | grep -iq 'p6'; then
-            is_p6=true
-            break
-            fi
-            done
-            echo "is_p6=$is_p6" >> $GITHUB_OUTPUT
+          labels=$(echo '${{ toJson(github.event.issue.labels) }}')
+          is_p6=false
+          echo "$labels" | jq -r '.[] | .name' | while read -r name; do
+          if echo "$name" | grep -iq 'p6'; then
+          is_p6=true
+          break
+          fi
+          done
+          echo "is_p6=$is_p6" >> $GITHUB_OUTPUT
       - name: Login to Jira
         uses: atlassian/gajira-login@v3
         env:
@@ -37,6 +37,6 @@ jobs:
 
         with:
           project: P6
-          issuetype: Task                      
-          summary: "${{ github.event.issue.title }}"
-          description: "${{ github.event.issue.html_url }}"
+          issuetype: Task
+          summary: '${{ github.event.issue.title }}'
+          description: '${{ github.event.issue.html_url }}'
