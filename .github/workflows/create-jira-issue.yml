@@ -47,6 +47,7 @@ jobs:
 
       - name: Create Issue
         id: create
+        if: ${{ !contains(github.event.issue.title, '회고') }}
         uses: atlassian/gajira-create@v3
         with:
           project: P6
