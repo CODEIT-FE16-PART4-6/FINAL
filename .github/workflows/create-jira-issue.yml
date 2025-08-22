@@ -1,42 +1,81 @@
 name: Create Jira issue
-
 on:
   issues:
-    types: [opened]
-
+    types:
+      - opened
+permissions:
+  contents: read # 코드 읽기
+  pages: write # GitHub Pages 배포
+  id-token: write # 클라우드 서비스 인증
 jobs:
   create-issue:
     name: Create Jira issue
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Check labels for p6
-        id: check_label
-        run: |
-          labels=$(echo '${{ toJson(github.event.issue.labels) }}')
-          is_p6=false
-          echo "$labels" | jq -r '.[] | .name' | while read -r name; do
-          if echo "$name" | grep -iq 'p6'; then
-          is_p6=true
-          break
-          fi
-          done
-          echo "is_p6=$is_p6" >> $GITHUB_OUTPUT
-      - name: Login to Jira
+      - name: Login
         uses: atlassian/gajira-login@v3
         env:
           JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
           JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
 
-      - name: Create Jira issue
-        uses: atlassian/gajira-create@v3
-        if: steps.check_label.outputs.is_p6 == 'true'
+      - name: Checkout dev code
+        uses: actions/checkout@v4
+        with:
+          ref: dev
 
+      - name: Issue Parser
+        uses: stefanbuck/github-issue-praser@v3
+        id: issue-parser
+        with:
+          template-path: .github/ISSUE_TEMPLATE/issue_form.yml
+
+      - name: Log Issue Parser
+        run: |
+          echo '${{ steps.issue-parser.outputs.jsonString }}'
+
+      - name: Convert markdown to Jira Syntax
+        uses: peter-evans/jira2md@v1
+        id: md2jira
+        with:
+          input-text: |
+            ### Github Issue Link
+            - ${{ github.event.issue.html_url }}
+
+            ${{ github.event.issue.body }}
+          mode: md2jira
+
+      - name: Create Issue
+        id: create
+        uses: atlassian/gajira-create@v3
         with:
           project: P6
-          issuetype: Task
+          issuetype: Subtask
           summary: '${{ github.event.issue.title }}'
-          description: '${{ github.event.issue.html_url }}'
+          description: '${{ steps.md2jira.outputs.output-text }}'
+          fields: |
+            {
+              "parent": {
+                "key": "${{ steps.issue-parser.outputs.issueparser_parentKey }}"
+              }
+            }
+
+      - name: Log created issue
+        run: echo "Jira Issue ${{ steps.issue-parser.outputs.parentKey }}/${{ steps.create.outputs.issue }} was created"
+
+      - name: Checkout dev code
+        uses: actions/checkout@v4
+        with:
+          ref: dev
+
+      - name: Create branch with Ticket number
+        run: |
+          git checkout -b ${{ steps.create.outputs.issue }}
+          git push origin ${{ steps.create.outputs.issue }}
+
+      - name: Update issue title
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: 'update-issue'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: '${{ steps.create.outputs.issue }} ${{ github.event.issue.title }}'
