@@ -32,7 +32,7 @@ export const StarRating = ({ value = 0, onChange }: StarRatingProps) => {
 
   return (
     <div>
-      <div className='flex gap-2'>
+      <div className='flex'>
         {STARS.map(star => (
           <button
             key={star}
@@ -40,6 +40,7 @@ export const StarRating = ({ value = 0, onChange }: StarRatingProps) => {
             onClick={() => handleClick(star)}
             onMouseEnter={() => setHoverRating(star)}
             onMouseLeave={() => setHoverRating(0)}
+            className='px-1'
           >
             {(hoverRating || currentRating) >= star ? (
               <div className='h-14 w-14'>
