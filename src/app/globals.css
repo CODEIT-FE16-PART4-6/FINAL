@@ -69,11 +69,12 @@
   button {
     @apply cursor-pointer disabled:cursor-not-allowed;
   }
-}
 
-/* Input 공통 컴포넌트 */
-input {
-  border: 1px solid var(--color-gray-600);
-  font-size: var(--text-base);
-  border-radius: 6px;
+  label {
+    @apply mb-2 block text-base font-medium;
+  }
+
+  input {
+    @apply focus:border-primary rounded-md border border-gray-600 p-3.5 text-base transition-colors duration-300 outline-none;
+  }
 }
