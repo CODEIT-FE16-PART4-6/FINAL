@@ -1,9 +1,9 @@
-import { CreateSignUpByEmailResponseOkDto } from "./api";
+import { SignUpResponseDto } from "./api";
 import { REQUEST_URL } from "./api-public";
 
 const URL: string = `${REQUEST_URL}/users`
 
-export async function SignUpByEmail(email: string, nickname: string, password: string): Promise<{ status: number, body: CreateSignUpByEmailResponseOkDto | { message: string } }> {
+export async function SignUpByEmail(email: string, nickname: string, password: string): Promise<{ status: number, body: SignUpResponseDto | { message: string } }> {
 
   const response = await fetch(
     `${URL}`,
@@ -31,7 +31,7 @@ export async function SignUpByEmail(email: string, nickname: string, password: s
     console.error('API 호출 실패:', response);
     body = await response.json();
   } else {
-    body = await response.json() as unknown as CreateSignUpByEmailResponseOkDto;
+    body = await response.json() as unknown as SignUpResponseDto;
   }
 
 
