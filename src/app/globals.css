@@ -75,6 +75,6 @@
   }
 
   input {
-    @apply focus:border-primary rounded-md border border-gray-600 p-3.5 text-base transition-colors duration-300 outline-none;
+    @apply rounded-md border p-3.5 text-base transition-colors duration-300 outline-none;
   }
 }
