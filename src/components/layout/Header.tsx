@@ -43,12 +43,12 @@ const Header = () => {
 
           {/* 로그인 후 */}
           {/* <ul className='flex items-center divide-x divide-gray-300'>
-            <li className='flex pr-5'>
+            <li className='flex pr-3 md:pr-5'>
               <button>
                 <AlarmIcon className='hover:text-primary text-gray-700 transition-colors' />
               </button>
             </li>
-            <li className='pl-5'>
+            <li className='pl-3 md:pl-5'>
               <button
                 type='button'
                 className='hover:text-primary flex items-center gap-2.5 transition-colors'
