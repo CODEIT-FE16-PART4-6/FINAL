@@ -12,20 +12,13 @@ interface StarRatingProps {
   onChange?: (rating: number) => void;
   size?: number;
 }
-/*
-const Star ()=>{
-
-
-}*/
-
 /**
  * 별점 컴포넌트
  * @param value - 초기 별점 으로 넣을 값.(완전 처음엔 0으로 설정 됨)
- * @param onChange -
- * @param size -
- * @returns - 리턴 값 설명
+ * @param onChange - 값의 변경 함수
+ * @param size - (반영 x 필요하면 사용)
  */
-export const StarRating = ({ value = 0, onChange, size = 32 }: StarRatingProps) => {
+export const StarRating = ({ value = 0, onChange }: StarRatingProps) => {
   const [currentRating, setCurrentRating] = useState(value); // 현재 선택된 값.
   const [hoverRating, setHoverRating] = useState(0); //마우스 를 올렸을 때의 임시값
   //[confirm, setConfirm] =useState(); //점수 확정 상태
@@ -39,7 +32,7 @@ export const StarRating = ({ value = 0, onChange, size = 32 }: StarRatingProps) 
 
   return (
     <div>
-      <div className='flex h-14 w-14 gap-8'>
+      <div className='flex gap-2'>
         {STARS.map(star => (
           <button
             key={star}
@@ -48,7 +41,15 @@ export const StarRating = ({ value = 0, onChange, size = 32 }: StarRatingProps) 
             onMouseEnter={() => setHoverRating(star)}
             onMouseLeave={() => setHoverRating(0)}
           >
-            {(hoverRating || currentRating) >= star ? <StarFilled /> : <StarEmpty />}
+            {(hoverRating || currentRating) >= star ? (
+              <div className='h-14 w-14'>
+                <StarFilled />
+              </div>
+            ) : (
+              <div className='h-14 w-14'>
+                <StarEmpty />
+              </div>
+            )}
           </button>
         ))}
       </div>
