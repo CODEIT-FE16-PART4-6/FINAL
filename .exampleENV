@@ -1,8 +1,0 @@
-# .env파일로 변경후 사용
-
-NEXT_PUBLIC_BACKEND_URL=https://sp-globalnomad-api.vercel.app
-NEXT_PUBLIC_TEAM=16-6
-
-NEXT_PUBLIC_KAKAO_APP_KEY=
-
-NEXT_PUBLIC_KAKAO_REDIRECT_URI=
