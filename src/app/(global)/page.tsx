@@ -11,12 +11,23 @@ export default function Home() {
     <main>
       <section>
         <h2 className="text-xl font-bold mb-2">버튼 테스트</h2>
-        <div className="w-1/10 flex flex-col gap-4">
-          <ButtonField >로그인 하기</ButtonField>
-          <ButtonField >로그인 하기</ButtonField>
-          <ButtonField >신청 불가</ButtonField>
+        <div className="w-1/5 flex flex-col gap-2 mb-5">
+          <ButtonField variant='primary' size='lg'>로그인 하기</ButtonField>
+          <ButtonField variant='secondary' size='lg'>로그인 하기</ButtonField>
+          <ButtonField variant="danger" size="lg" disabled>신청 불가</ButtonField>
+        </div>
+        <div className="w-1/8 flex flex-col gap-2 mb-5">
+          <ButtonField variant='primary' size='md'>로그인 하기</ButtonField>
+          <ButtonField variant='secondary' size='md'>로그인 하기</ButtonField>
+          <ButtonField variant="danger" size="md" disabled>신청 불가</ButtonField>
+        </div>
+        <div className="w-1/14 flex flex-col gap-2 mb-5">
+          <ButtonField variant='primary' size='sm'>로그인 하기</ButtonField>
+          <ButtonField variant='secondary' size='sm'>로그인 하기</ButtonField>
+          <ButtonField variant="danger" size="sm" disabled>신청 불가</ButtonField>
         </div>
       </section>
+
       <div>
         <StarRating value={rating} onChange={setRating} />
         <div> 현재 별점 : {rating}</div>
