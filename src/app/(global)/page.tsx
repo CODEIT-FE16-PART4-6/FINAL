@@ -12,9 +12,9 @@ export default function Home() {
       <section>
         <h2 className="text-xl font-bold mb-2">버튼 테스트</h2>
         <div className="w-1/10 flex flex-col gap-4">
-          <ButtonField variant='default'>로그인 하기</ButtonField>
-          <ButtonField variant='active'>로그인 하기</ButtonField>
-          <ButtonField variant='disabled'>신청 불가</ButtonField>
+          <ButtonField >로그인 하기</ButtonField>
+          <ButtonField >로그인 하기</ButtonField>
+          <ButtonField >신청 불가</ButtonField>
         </div>
       </section>
       <div>
