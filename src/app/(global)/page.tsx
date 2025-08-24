@@ -1,6 +1,7 @@
 'use client';
 
 import { StarRating } from '@/components/StarRating';
+import ButtonField from '@/components/Button';
 import { useState } from 'react';
 
 export default function Home() {
@@ -8,6 +9,14 @@ export default function Home() {
 
   return (
     <main>
+      <section>
+        <h2 className="text-xl font-bold mb-2">버튼 테스트</h2>
+        <div className="w-1/10 flex flex-col gap-4">
+          <ButtonField variant='default'>로그인 하기</ButtonField>
+          <ButtonField variant='active'>로그인 하기</ButtonField>
+          <ButtonField variant='disabled'>신청 불가</ButtonField>
+        </div>
+      </section>
       <div>
         <StarRating value={rating} onChange={setRating} />
         <div> 현재 별점 : {rating}</div>
