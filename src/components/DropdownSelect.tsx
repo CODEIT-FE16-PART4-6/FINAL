@@ -1,89 +1,75 @@
 'use client';
-import { useState } from 'react';
-// import Image from 'next/image';
-import clsx from 'clsx';
+import { useState, useRef, useEffect } from 'react';
 
-export interface DataType {
-  label: string;
-  value: string;
+export interface Activity {
+  id: number;
+  name: string;
 }
 
-export interface DropdownTriggerProps {
-  onClick?: () => void;
-  isOpen: boolean;
-  value?: string;
+export interface DropdownProps {
+  activities: Activity[];
+  value: Activity | null;
+  onChange: (value: Activity) => void;
+  label?: string;
 }
 
-export interface DropdownMenuProps {
-  isOpen: boolean;
-  datas: DataType[];
-  onChange: (data: DataType) => void;
-  selectedData?: DataType | null;
-}
+export const DropdownSelect = ({ activities, value, onChange, label }: DropdownProps) => {
 
-/**
- * 드롭다운 value와 트리거 버튼 렌더링을 포함한 컴포넌트 입니다
- * 선택한 value가 드롭다운 외부에 표시됩니다
- * @param {DataType[]} props.datas - 드롭다운에 표시될 데이터 항목 배열 datas={dataList}
- */
-export const DropdownSelect = ({ datas }: { datas: DataType[] }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedData, setSelectedData] = useState<DataType | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const toggleDropdown = () => {
-    setIsOpen(prev => !prev);
-  };
+  // 외부 클릭 시 드롭다운 닫기
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
-  const handleChange = (data: DataType) => {
-    setSelectedData(data);
+  const handleSelect = (activity: Activity) => {
+    onChange(activity);
     setIsOpen(false);
   };
 
   return (
-    <div>
-      <div>
-        <DropdownTrigger onClick={toggleDropdown} isOpen={isOpen} value={selectedData?.label}/>
-        <DropdownMenu
-          datas={datas}
-          isOpen={isOpen}
-          onChange={handleChange}
-          selectedData={selectedData}
-        />
-      </div>
-    </div>
-  );
-};
-
-export const DropdownTrigger = ({ onClick, value}: DropdownTriggerProps) => {
-  return (
-    <div>
-      <button type='button' onClick={onClick}>
-        {/* 선택된 값 또는 기본 텍스트 보여줌 */}
-        <span>{value || '체험을 선택하세요'}</span>
-      </button>
-    </div>
-  );
-};
-
-export const DropdownMenu = ({ datas, isOpen, onChange, selectedData }: DropdownMenuProps) => {
-  if (!isOpen) return null;
-  return (
-    <div>
-      <ul>
-      {datas.map(data => (
-        <li
-        key={data.value}
-        onClick={() => onChange(data)}
-        className={clsx('cursor-pointer px-4 py-2 hover:bg-gray-200', {
-          'bg-gray-300': selectedData?.value === data.value,
-        })}
+    <div className="w-64" ref={containerRef}>
+      {label && <label className="block mb-1 font-semibold">{label}</label>}
+      <div
+        className="border border-gray-300 rounded px-4 py-2 cursor-pointer flex justify-between items-center"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span>{value?.name || '카테고리'}</span>
+        <svg
+          className="w-4 h-4 ml-2"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          {data.label}
-        </li>
-      ))}
-      </ul>
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isOpen ? 'M19 15l-7-7-7 7' : 'M19 9l-7 7-7-7'} />
+        </svg>
+      </div>
+      {isOpen && (
+        <div className="border border-gray-300 rounded bg-white max-h-60 overflow-y-auto absolute w-64 z-50 mt-1">
+          {activities.map((activity) => (
+            <div
+              key={activity.id}
+              className={`px-4 py-2 cursor-pointer hover:bg-blue-500 hover:text-white ${
+                value?.id === activity.id ? 'bg-blue-500 text-white' : ''
+              }`}
+              onClick={() => handleSelect(activity)}
+            >
+              {activity.name}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
-};
+}
 
-{/* <Image src={'/icons/ic_meatball_40px.svg'} width={40} height={40} alt='' /> */}
