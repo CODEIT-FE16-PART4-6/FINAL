@@ -24,7 +24,21 @@ export const fetchServerData = async <T>({ path, query, revalidate }: FetchOptio
 
   const res = await fetch(url.toString(), options);
 
-  if (!res.ok) throw new Error(`데이터 가져오기에 실패했습니다. status: ${res.status}`);
+  if (res.status >= 400) {
+    let errorMessage = `요청 실패 (status: ${res.status})`; // try catch 실패 시 fallback 문자열
+
+    try {
+      const errorBody = await res.json();
+
+      if (errorBody && typeof errorBody === 'object' && 'message' in errorBody) {
+        errorMessage = `상태 코드: ${errorBody.status}, 에러 메시지: ${errorBody.message}`;
+      }
+    } catch (err) {
+      errorMessage = `JSON 파싱 실패: ${err instanceof Error ? err.message : String(err)}`;
+    }
+
+    throw new Error(errorMessage); // Error 인스턴스는 문자열만 전달 가능
+  }
 
   return res.json();
 };
