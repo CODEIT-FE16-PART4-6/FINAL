@@ -1,6 +1,6 @@
 'use client';
 import { useState, useRef, useEffect } from 'react';
-
+import Image from 'next/image';
 export interface Activity {
   id: number;
   name: string;
@@ -14,7 +14,6 @@ export interface DropdownProps {
 }
 
 export const DropdownSelect = ({ activities, value, onChange, label }: DropdownProps) => {
-
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -37,29 +36,25 @@ export const DropdownSelect = ({ activities, value, onChange, label }: DropdownP
   };
 
   return (
-    <div className="w-64" ref={containerRef}>
-      {label && <label className="block mb-1 font-semibold">{label}</label>}
+    <div className='w-64' ref={containerRef}>
+      {label && <label className='mb-1 block font-semibold'>{label}</label>}
       <div
-        className="border border-gray-300 rounded px-4 py-2 cursor-pointer flex justify-between items-center"
+        className='flex cursor-pointer items-center justify-between rounded border border-gray-300 px-4 py-2'
         onClick={() => setIsOpen(!isOpen)}
       >
         <span>{value?.name || '카테고리'}</span>
-        <svg
-          className="w-4 h-4 ml-2"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isOpen ? 'M19 15l-7-7-7 7' : 'M19 9l-7 7-7-7'} />
-        </svg>
+        <Image
+          src='icons/ic_chevron_down.svg'
+          alt='Dropdown Icon'
+          className={`transform transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+        />
       </div>
       {isOpen && (
-        <div className="border border-gray-300 rounded bg-white max-h-60 overflow-y-auto absolute w-64 z-50 mt-1">
-          {activities.map((activity) => (
+        <div className='absolute z-50 mt-1 max-h-60 w-64 overflow-y-auto rounded border border-gray-300 bg-white'>
+          {activities.map(activity => (
             <div
               key={activity.id}
-              className={`px-4 py-2 cursor-pointer hover:bg-blue-500 hover:text-white ${
+              className={`cursor-pointer px-4 py-2 hover:bg-blue-500 hover:text-white ${
                 value?.id === activity.id ? 'bg-blue-500 text-white' : ''
               }`}
               onClick={() => handleSelect(activity)}
@@ -71,5 +66,4 @@ export const DropdownSelect = ({ activities, value, onChange, label }: DropdownP
       )}
     </div>
   );
-}
-
+};
