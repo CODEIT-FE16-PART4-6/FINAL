@@ -1,4 +1,4 @@
-import { REQUEST_URL } from '@/utils/api-public/api-public';
+import { REQUEST_URL } from '@/utils/api-public';
 
 interface FetchOptions {
   path: string;
