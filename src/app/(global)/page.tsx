@@ -1,16 +1,26 @@
 'use client';
 
 import InputField from '@/components/InputField';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
+
+// 폼 데이터 타입 정의
+interface LoginFormInputs {
+  email: string;
+  nickname: string;
+  password: string;
+}
 export default function Home() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<{ email: string; password: string; nickname: string }>();
+  } = useForm<LoginFormInputs>();
 
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
+    console.log(data);
+  };
+
   return (
     <main>
       반응형, 컬러 시스템 테스트
@@ -27,7 +37,7 @@ export default function Home() {
           label="이메일"
           placeholder="이메일 입력"
           type="email"
-          autoComplete="on"
+          autoComplete="email"
           {...register('email', { required: '이메일을 입력해주세요' })}
           error={errors.email?.message}
         />
@@ -35,7 +45,7 @@ export default function Home() {
           label="닉네임"
           placeholder="닉네임 입력"
           type="text"
-          autoComplete="on"
+          autoComplete="name"
           {...register('nickname', { required: '닉네임을 입력해주세요' })}
           error={errors.nickname?.message}
         />
@@ -43,9 +53,9 @@ export default function Home() {
           label="비밀번호"
           placeholder="비밀번호 입력"
           type="password"
-          autoComplete="on"
+          autoComplete="current-password"
           {...register('password', { required: '비밀번호를 입력해주세요' })}
-          error={errors.email?.message}
+          error={errors.password?.message}
         />
         <button
           type="submit"
@@ -56,26 +66,19 @@ export default function Home() {
       </form>
 
       <h2 className="text-2xl font-bold mt-12 mb-3">예약 가능한 시간대</h2>
-
-      <div className="flex gap-4">
-        <div className=" flex flex-col">
+      <div className="flex gap-4 mb-10">
+        <div className="flex flex-col">
           <label className="text-xl text-gray-900 mb-2.5">날짜</label>
-          <InputField placeholder="yy/mm/dd" type="text" />
+          <InputField placeholder="yy/mm/dd" type="text" className="h-11 sm:h-14" />
         </div>
-        <div className=" flex flex-col">
+        <div className="flex flex-col">
           <label className="text-xl text-gray-900 mb-2.5">시작 시간</label>
-          <InputField placeholder="0:00" type="text" />
+          <InputField placeholder="0:00" type="text" className="h-11 sm:h-14" />
         </div>
-        <div className=" flex flex-col">
+        <div className="flex flex-col">
           <label className="text-xl text-gray-900 mb-2.5">종료 시간</label>
-          <InputField placeholder="0:00" type="text" />
+          <InputField placeholder="0:00" type="text" className="h-11 sm:h-14" />
         </div>
-      </div>
-
-      <div className="flex gap-4 mt-4">
-        <InputField placeholder="yy/mm/dd" type="text" />
-        <InputField placeholder="0:00" type="text" />
-        <InputField placeholder="0:00" type="text" />
       </div>
     </main>
   );
