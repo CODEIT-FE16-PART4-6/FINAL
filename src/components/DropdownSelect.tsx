@@ -8,7 +8,7 @@ export interface Activity {
 
 export interface DropdownProps {
   activities: Activity[];
-  value?: Activity | null;
+  value: Activity | null | string;
   onChange: (value: number) => void;
   label?: string;
   placeholder?: string;
@@ -54,7 +54,7 @@ export const DropdownSelect = ({
         className='flex cursor-pointer items-center justify-between rounded border border-gray-800 px-4 py-2'
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span>{value?.name ?? placeholder}</span>
+        <span> {typeof value === 'string' ? value : (value?.name ?? placeholder)}</span>
         <Image
           src='icons/ic_chevron_down.svg'
           alt='Dropdown Icon'

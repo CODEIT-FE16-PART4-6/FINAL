@@ -1,5 +1,5 @@
 'use client';
-import { DropdownSelect } from '@/components/DropdownSelect';
+import { DropdownSelect, Activity } from '@/components/DropdownSelect';
 import { useState } from 'react';
 import { DropdownMeatball } from '@/components/DropdownMeatball';
 
@@ -12,9 +12,13 @@ const activities = [
 ];
 const TestPage = () => {
   //셀렉트 관련 상태와 함수
-  const [selectedActivityId, setSelectedActivityId] = useState<number>(activities[0].id);
-  const handleDropdownChange = (id: number) => {
-    setSelectedActivityId(id); // 드롭다운에서 선택한 id로 상태 업데이트
+  const [selectedActivityId, setSelectedActivityId] = useState<Activity | null>(null);
+  const [selectedActivity, setSelectedActivity] = useState(null); // 선택된 activity 객체 또는 null
+  //selectedActivityId가 변경될 때 selectedActivity 업데이트
+  const handleSelectId = (id: number) => {
+    setSelectedActivityId(id);
+    const activity = activities.find(activity => activity.id === id);
+    setSelectedActivity(activity);
   };
 
   //미트볼 관련 함수
@@ -28,12 +32,14 @@ const TestPage = () => {
 
   return (
     <div>
+      <h3>DropdownSelect 컴포넌트</h3>
       <DropdownSelect
         activities={activities}
         placeholder='카테고리'
-        value={activities.find(activity => activity.id === selectedActivityId) || null}
-        onChange={handleDropdownChange}
+        value={selectedActivity}
+        onChange={handleSelectId}
       />
+      <h3>DropdownMeatball 컴포넌트</h3>
       <DropdownMeatball onEdit={handleEdit} onDelete={handleDelete} />
     </div>
   );
