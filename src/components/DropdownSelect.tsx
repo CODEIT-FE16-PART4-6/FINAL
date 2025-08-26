@@ -8,12 +8,19 @@ export interface Activity {
 
 export interface DropdownProps {
   activities: Activity[];
-  value: Activity | null;
-  onChange: (value: Activity) => void;
+  value?: Activity | null;
+  onChange: (value: number) => void;
   label?: string;
+  placeholder?: string;
 }
 
-export const DropdownSelect = ({ activities, value, onChange, label }: DropdownProps) => {
+export const DropdownSelect = ({
+  activities,
+  value,
+  onChange,
+  label,
+  placeholder,
+}: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -31,26 +38,31 @@ export const DropdownSelect = ({ activities, value, onChange, label }: DropdownP
   }, []);
 
   const handleSelect = (activity: Activity) => {
-    onChange(activity);
+    onChange(activity.id);
     setIsOpen(false);
   };
 
   return (
-    <div className='w-64' ref={containerRef}>
+    <div className='border' ref={containerRef}>
       {label && <label className='mb-1 block font-semibold'>{label}</label>}
       <div
-        className='flex cursor-pointer items-center justify-between rounded border border-gray-300 px-4 py-2'
+        className='flex cursor-pointer items-center justify-between rounded border border-gray-800 px-4 py-2'
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span>{value?.name || '카테고리'}</span>
+        <span>{value?.name ?? placeholder}</span>
         <Image
           src='icons/ic_chevron_down.svg'
           alt='Dropdown Icon'
-          className={`transform transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+          width={24}
+          height={24}
+          style={{
+            transform: `rotate(${isOpen ? 180 : 0}deg)`,
+            transition: 'transform 0.2s ease',
+          }}
         />
       </div>
       {isOpen && (
-        <div className='absolute z-50 mt-1 max-h-60 w-64 overflow-y-auto rounded border border-gray-300 bg-white'>
+        <div className='absolute z-50 mt-1 max-h-60 w-64 overflow-y-auto rounded border border-gray-800 bg-white shadow-lg'>
           {activities.map(activity => (
             <div
               key={activity.id}
