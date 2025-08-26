@@ -72,7 +72,9 @@ export const DropdownSelect = ({
             <div
               key={activity.id}
               className={`cursor-pointer px-4 py-2 hover:bg-blue-500 hover:text-white ${
-                value?.id === activity.id ? 'bg-blue-500 text-white' : ''
+                value && typeof value !== 'string' && value.id === activity.id
+                  ? 'bg-blue-500 text-white'
+                  : ''
               }`}
               onClick={() => handleSelect(activity)}
             >
