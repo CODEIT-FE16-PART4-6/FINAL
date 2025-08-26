@@ -13,7 +13,12 @@ export interface DropdownProps {
   label?: string;
   placeholder?: string;
 }
-
+/**
+ * 드롭다운 선택 컴포넌트
+ * @param onChange 선택된 activity.id를 부모 컴포넌트로 전달하는 콜백 함수
+ * @param value 현재 선택된 activity
+ * @param activities 드롭다운에 표시할 활동 목록
+ */
 export const DropdownSelect = ({
   activities,
   value,
